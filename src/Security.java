@@ -1,3 +1,7 @@
+/*
+ * This class will handle all account login logic 
+ * Could add a User class 
+ */
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;

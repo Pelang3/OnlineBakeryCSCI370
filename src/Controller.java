@@ -1,3 +1,7 @@
+/*
+ * The controller class will manage the flow and of the application 
+ * It will be the intermediary between view, models, and other backend related logic
+ */
 public class Controller {
     private View view;
     private ScriptReader sr; 

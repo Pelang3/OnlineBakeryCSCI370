@@ -1,3 +1,8 @@
+/*
+ * This was going to be a helper class to easily read text from a text file 
+ * This class may just go into the bin because we can alternatively hard code the 
+ * Script 
+ */
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;

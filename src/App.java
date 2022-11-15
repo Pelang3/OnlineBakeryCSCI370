@@ -1,4 +1,6 @@
-//This is where the app will begin running 
+/*
+ * This is where the app will begin running 
+ */
 public class App {
 
     public static void main(String[] args) {
