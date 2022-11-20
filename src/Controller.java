@@ -20,6 +20,8 @@ public class Controller {
             login();
         else 
             signUp();
+
+        displayMenu();
     }
 
     public void signUp(){
@@ -52,13 +54,49 @@ public class Controller {
         }
     }
 
-    public void displayGoods(){
+    public void displayMenu(){
+
+        final int ADD_ITEM = 1, REMOVE_ITEM = 2, VIEW_CART = 3, CHECKOUT = 4;
+
+        int input = (int)view.getInputNum( "Select an option: \n" +
+                "  1) Add Item\n" +
+                "  2) Remove Item\n" +
+                "  3) View Cart\n" +
+                "  4) Checkout\n ");
+
+        //if input is not between 1 and 4 ask again...
+        if(input == ADD_ITEM){
+            showItemMenu();
+        } else if (input == REMOVE_ITEM) {
+            showRemoveMenu();
+        } else if (input == VIEW_CART) {
+            showCartMenu();
+        }else if (input == CHECKOUT) {
+            showCheckoutMenu();
+        } else {
+            //if input is not between 1 and 4 ask again...
+        }
+    }
+    public void showItemMenu(){
+
+        view.writeToScreen("to do: showItemMenu");
+
+    }
+    public void showRemoveMenu(){
+
+        view.writeToScreen("to do: showRemoveMenu");
+    }
+    public void showCartMenu(){
+
+        view.writeToScreen("to do: showCartMenu");
+    }
+    public void showCheckoutMenu(){
+        view.writeToScreen("to do: showCheckoutMenu");
 
     }
 
-    public void addItemToCard(){
 
-    }
+
 
 
 }
