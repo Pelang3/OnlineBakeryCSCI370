@@ -12,6 +12,10 @@ import java.io.IOException;
 public class Security {
     BufferedReader reader;
     BufferedWriter writer;
+
+    //this would be provided from client in it's request but b/c its not a full app,
+    //assuming lastUser the client sending the req with a cookie field containing it's id
+    String lastUser; 
     
     public Security(){
 
@@ -38,13 +42,21 @@ public class Security {
     }
 
     public boolean userNameExists(String attemptedName){
-        
+        //toDO
         return true;
     }
 
     public boolean authenticateUserPass(String attemptedName, String attemptedPassword){
-        
+        //toDO
         return true;
+    }
+
+    public void setUser(String user){
+        this.lastUser = user;
+    }
+    
+    public String getUser(){
+        return this.lastUser;
     }
 
 }

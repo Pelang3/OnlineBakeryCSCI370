@@ -5,6 +5,7 @@ public class Cookie implements IItem{
     public Cookie(){
 
     }
+    
     @Override
     public int getPrice() {
         // TODO Auto-generated method stub

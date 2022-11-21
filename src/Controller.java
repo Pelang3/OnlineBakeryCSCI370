@@ -1,4 +1,4 @@
-import Factory.BakeryFactory;
+import Factory.*;
 
 /*
  * The controller class will manage the flow and of the application 
@@ -8,11 +8,20 @@ public class Controller {
     private View view;
     private ScriptReader sr; 
     private Security security;
+    private CartManager cm;
+
+    /*
+     * For convienience, controller should not have these as instance variables
+     * they are specific to the client and should be dynamically accessed from the Security and CartManager
+     */
+    private Cart currentCart;
+    private String currentUser;
 
     public Controller(View view) {
         this.view = view;
         this.sr = new ScriptReader();
         this.security = new Security();
+        this.cm = CartManager.getInstance();
         start();
     }
 
@@ -22,8 +31,13 @@ public class Controller {
             login();
         else 
             signUp();
+        
+        this.currentUser = security.getUser();
+        this.currentCart = cm.setUpCart(currentUser);
 
-        displayMenu();
+        while(true){
+            displayMenu();
+        }
     }
 
     public void signUp(){
@@ -32,6 +46,7 @@ public class Controller {
         String password = view.getInput("Please enter your password:");
         double funds = view.getInputNum("Please enter the money you are depositing:");
         security.saveUser(name, password, funds);
+        security.setUser(name);
     }
 
     public void login(){
@@ -42,22 +57,21 @@ public class Controller {
         }
 
         if(security.userNameExists(userAttempt)){
-            view.writeToScreen("Hello" + userAttempt);
+            view.writeToScreen("Hello " + userAttempt);
             String passwordAttempt = view.getInput("Please enter your password " + userAttempt);
             if(security.authenticateUserPass(userAttempt, passwordAttempt)){
                 view.writeToScreen("Welcome " + userAttempt);
+                security.setUser(userAttempt);
             }
             else{
                 //what to do if password in fails 
             }
-
         } else{
             //write login to try again if username fails 
         }
     }
 
     public void displayMenu(){
-
         final int ADD_ITEM = 1, REMOVE_ITEM = 2, VIEW_CART = 3, CHECKOUT = 4;
 
         int input = (int)view.getInputNum( "Select an option: \n" +
@@ -79,49 +93,46 @@ public class Controller {
             //if input is not between 1 and 4 ask again...
         }
     }
+
     public void showItemMenu(){
-        view.writeToScreen("Select an option: \n"+
-        "1) Cookie\n"+"2) Croissants\n"+"3) Donuts\n"+"4) Cake\n");
-        int input = (int)view.getInputNum(null);
+
+        int input = (int)view.getInputNum("\nSelect an item option: \n"+
+        "1) Cookies\n"+"2) Croissants\n"+"3) Donuts\n"+"4) Cake\n");
         final BakeryFactory BF = new BakeryFactory();
 
+        IItem currPicked = BF.getItem("Cookies"); 
+
+        String[] inputOptions = BakeryModel.staticItemOfferings;
         //InputOptions array 0, 1, 2, 3, 4, 5,
-        String[] inputOptions = new String[]{"Cookie","Croissants","Donuts","Cake","6inCake","9inCake"};
+
         if(input == 4){
             view.writeToScreen("1) 6in Cake\n"+"2) 9in Cake\n");
             input = (int)view.getInputNum("What size of the cake would you like? ");
             
-            if(input == 1){
-                view.writeToScreen( BF.getItem(inputOptions[4]) + " has been added to cart");
-                //Mershad needs to upload add to cart funcs here I did most of the grunt work -Kenneth
-            }
-            if(input == 2){
-                view.writeToScreen( BF.getItem(inputOptions[5]) + " has been added to cart");
-                //Mershad needs to upload add to cart funcs here I did most of the grunt work -Kenneth
-            }
+            if(input == 1)
+                currPicked = BF.getItem(inputOptions[4]);
+            if(input == 2)
+                currPicked = BF.getItem(inputOptions[4]);
+        }
+        else{
+            currPicked = BF.getItem(inputOptions[input-1]);
         }
 
-        else{
-        view.writeToScreen( BF.getItem(inputOptions[input-1]) + " has been added to cart");
-        //Mershad needs to upload add to cart funcs here I did most of the grunt work -Kenneth
-        }
+        view.writeToScreen("\n"+currPicked.getProductName() + " has been added to cart\n");
+        currentCart.addToCart(currPicked);
     }
 
     public void showRemoveMenu(){
-
         view.writeToScreen("to do: showRemoveMenu");
     }
-    public void showCartMenu(){
 
+    public void showCartMenu(){
         view.writeToScreen("to do: showCartMenu");
     }
+
     public void showCheckoutMenu(){
         view.writeToScreen("to do: showCheckoutMenu");
-
     }
-
-
-
 
 
 }
