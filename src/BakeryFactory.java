@@ -7,8 +7,8 @@ public class BakeryFactory {
         "Cookies", new Cookie(),
         "Donuts", new Donuts(),
         "Croissants", new Croissants(),
-        "6inCake", new Cake(6),
-        "9inCake", new Cake(9) 
+        "6inCake", new SixCake(),
+        "9inCake", new NineCake() 
     );
 
     BakeryFactory(){//default constructor

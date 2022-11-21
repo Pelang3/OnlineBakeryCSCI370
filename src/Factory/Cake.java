@@ -2,20 +2,11 @@ package Factory;
 import java.util.ArrayList;
 
 public class Cake implements IItem {
-	private int Price = 2;
-	private int Size = 2;
-	public ArrayList<String> toppings;
+	protected int Price = 0;
+	protected int Size = 0;
+	public ArrayList<String> toppings = new ArrayList<>();
 	
-	public Cake(int size) {
-		toppings = new ArrayList<>();
-		
-		if(size == 6){
-			Price = 20;
-		}
-		
-		if(size == 9) {
-			Price = 25;
-		}
+	public Cake() {
 	}
 	
 	@Override
