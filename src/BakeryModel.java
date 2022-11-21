@@ -7,6 +7,5 @@ import java.io.FileReader;
  */
 public class BakeryModel {   
     public BakeryModel() {
-
     }
 }

@@ -78,10 +78,33 @@ public class Controller {
         }
     }
     public void showItemMenu(){
+        view.writeToScreen("Select an option: \n"+
+        "1) Cookie\n"+"2) Croissants\n"+"3) Donuts\n"+"4) Cake\n");
+        int input = (int)view.getInputNum(null);
+        final BakeryFactory BF = new BakeryFactory();
 
-        view.writeToScreen("to do: showItemMenu");
+        //InputOptions array 0, 1, 2, 3, 4, 5,
+        String[] inputOptions = new String[]{"Cookie","Croissants","Donuts","Cake","6inCake","9inCake"};
+        if(input == 4){
+            view.writeToScreen("1) 6in Cake\n"+"2) 9in Cake\n");
+            input = (int)view.getInputNum("What size of the cake would you like? ");
+            
+            if(input == 1){
+                view.writeToScreen( BF.getItem(inputOptions[4]) + " has been added to cart");
+                //Mershad needs to upload add to cart funcs here I did most of the grunt work -Kenneth
+            }
+            if(input == 2){
+                view.writeToScreen( BF.getItem(inputOptions[5]) + " has been added to cart");
+                //Mershad needs to upload add to cart funcs here I did most of the grunt work -Kenneth
+            }
+        }
 
+        else{
+        view.writeToScreen( BF.getItem(inputOptions[input-1]) + " has been added to cart");
+        //Mershad needs to upload add to cart funcs here I did most of the grunt work -Kenneth
+        }
     }
+
     public void showRemoveMenu(){
 
         view.writeToScreen("to do: showRemoveMenu");

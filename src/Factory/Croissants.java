@@ -10,4 +10,15 @@ public class Croissants implements IItem{
             // TODO Auto-generated method stub
             return Price;
         }
+        @Override
+        public String getProductName() {
+            // TODO Auto-generated method stub
+            return "Croissant";
+        }
+        @Override
+        public double getUnitPrice() {
+            // TODO Auto-generated method stub
+            return Price;
+        }
+
 }

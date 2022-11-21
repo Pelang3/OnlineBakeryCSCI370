@@ -26,4 +26,18 @@ public class Cake implements IItem {
 	public int getSize() {
 		return Size;
 	}
+
+	@Override
+	public String getProductName() {
+		// TODO Auto-generated method stub
+		return getSize()+"in. Cake";
+	}
+
+	@Override
+	public double getUnitPrice() {
+		// TODO Auto-generated method stub
+		return Price;
+	}
+
+
 }
