@@ -1,4 +1,4 @@
-
+package Observer;
 public interface Subject {
 
 	void addSubscriber(Observer o);

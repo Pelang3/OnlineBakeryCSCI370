@@ -1,3 +1,4 @@
+package Observer;
 import java.util.ArrayList;
 import java.util.List;
 //import com.sun.tools.javac.util.List;
@@ -21,7 +22,6 @@ public class StoreObservable implements Subject {
 	@Override
 	public void addSubscriber(Observer o) 
 	{
-	
 		observers.add(o);
 	}
 
@@ -39,7 +39,6 @@ public class StoreObservable implements Subject {
 		for(Observer obs : observers)
 		{
 			obs.update(discount);
-			
 		}
 	}
 

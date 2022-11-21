@@ -1,3 +1,4 @@
+package Observer;
 public class Customer implements Observer {
 
 	private String name; // <-- 1.) Potentially modified later
