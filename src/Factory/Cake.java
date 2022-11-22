@@ -10,7 +10,7 @@ public class Cake implements IItem {
 		this.Size = size;
 	}
 
-	public Cake(int price, int size) {
+	public Cake(int size, int price) {
 		this.Price = price;
 		this.Size = size;
 	}
