@@ -1,3 +1,8 @@
+import Decorator.CandyDecorator;
+import Decorator.FreshCreamDecorator;
+import Decorator.FruitDecorator;
+import Decorator.IcingDecorator;
+import Decorator.SprinkleDecorator;
 import Factory.*;
 
 /*
@@ -94,7 +99,7 @@ public class Controller {
         }
     }
 
-    public void showItemMenu(){
+     public void showItemMenu(){
 
         int input = (int)view.getInputNum("\nSelect an item option: \n"+
         "1) Cookies\n"+"2) Croissants\n"+"3) Donuts\n"+"4) Cake\n");
@@ -106,13 +111,45 @@ public class Controller {
         //InputOptions array 0, 1, 2, 3, 4, 5,
 
         if(input == 4){
+            //Size
             view.writeToScreen("1) 6in Cake\n"+"2) 9in Cake\n");
             input = (int)view.getInputNum("What size of the cake would you like? ");
             
+            //6in
             if(input == 1)
                 currPicked = BF.getItem(inputOptions[4]);
+            //9in
             if(input == 2)
-                currPicked = BF.getItem(inputOptions[4]);
+                currPicked = BF.getItem(inputOptions[5]);
+
+            Cake cake = (Cake) currPicked;
+            do {
+                //Decorations
+                view.writeToScreen("1) Fruit\n2) Candy\n3) Sprinkles\n4) Fresh Cream\n5) Icing\n6.(Pick this when Done)\n");
+                input = (int)view.getInputNum("Pick any toppings you want.");
+
+                if(input == 1) {
+                    cake = new FruitDecorator(cake);
+                }
+                else if(input == 2) {
+                    cake = new CandyDecorator(cake);
+                }
+                else if(input == 3) {
+                    cake = new SprinkleDecorator(cake);
+                }
+                else if(input == 4) {
+                    cake = new FreshCreamDecorator(cake);
+                }
+                else if(input == 5) {
+                    cake = new IcingDecorator(cake);
+                }
+                else {
+                    currPicked = (IItem) cake;
+                    break;
+                }
+                view.writeToScreen("Current list of toppings: " + cake.getToppingList());
+            } while (input != 6);
+            
         }
         else{
             currPicked = BF.getItem(inputOptions[input-1]);
@@ -121,6 +158,7 @@ public class Controller {
         view.writeToScreen("\n"+currPicked.getProductName() + " has been added to cart\n");
         currentCart.addToCart(currPicked);
     }
+
 
     public void showRemoveMenu(){
         view.writeToScreen("to do: showRemoveMenu");
