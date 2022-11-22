@@ -10,7 +10,7 @@ public class CakeDecorator extends Cake {
 	}
 	
 	public CakeDecorator(Cake baseCake) {
-		super(baseCake.getSize());
+		super(baseCake.getSize(), baseCake.getPrice(), baseCake.toppings);
 		this.baseCake = baseCake;
 	}
 	
