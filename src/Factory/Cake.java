@@ -14,6 +14,12 @@ public class Cake implements IItem {
 		this.Price = price;
 		this.Size = size;
 	}
+
+	public Cake(int size, int price, ArrayList<String> toppings) {
+		this.Price = price;
+		this.Size = size;
+		this.toppings = toppings;
+	}
 	
 	@Override
 	public int getPrice() {
@@ -36,5 +42,13 @@ public class Cake implements IItem {
 		return Price;
 	}
 
+	public String getToppingList() {
+		String toppingList = "";
+		for(int i=0; i<toppings.size(); i++) {
+			toppingList += toppings.get(i) + " ";
+		}
+
+		return toppingList;
+	}
 
 }
