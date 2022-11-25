@@ -47,6 +47,7 @@ public class Controller {
         }
         this.currentUser = security.getUser();
         this.currentCart = cm.setUpCart(currentUser);
+        randI = new Random(); 
 
         while(true){
             displayMenu();
