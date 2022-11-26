@@ -1,9 +1,13 @@
+import java.util.Random;
 import Decorator.CandyDecorator;
 import Decorator.FreshCreamDecorator;
 import Decorator.FruitDecorator;
 import Decorator.IcingDecorator;
 import Decorator.SprinkleDecorator;
 import Factory.*;
+import Observer.Customer;
+import Observer.Observer;
+import Observer.StoreObservable;
 
 /*
  * The controller class will manage the flow and of the application 
@@ -21,6 +25,9 @@ public class Controller {
      */
     private Cart currentCart;
     private String currentUser;
+    private StoreObservable onlineBakery = new StoreObservable(); 
+    private Random randI; 
+    private int myRandInt; 
 
     public Controller(View view) {
         this.view = view;
@@ -34,14 +41,19 @@ public class Controller {
         view.writeToScreen("Hello, welcome to the Online Bakery Store!\n");
         if(security.checkIfSignedUp())
             login();
-        else 
+        else{ 
             signUp();
-        
+            newsletter(); 
+        }
         this.currentUser = security.getUser();
         this.currentCart = cm.setUpCart(currentUser);
+        randI = new Random(); 
 
         while(true){
             displayMenu();
+            myRandInt = randI.nextInt(15) + 1;
+            if(myRandInt == 1)
+                giveCoupon();
         }
     }
 
@@ -53,7 +65,24 @@ public class Controller {
         security.saveUser(name, password, funds);
         security.setUser(name);
     }
+    public void newsletter(){ 
+        final int YES = 1, NO = 2;
+        int input = (int)view.getInputNum("Would you like to sign up for our newsletter? \n" +
+                " 1) Yes\n" + 
+                " 2) No\n");
+        if(input == YES){
+            Customer currentCustomer = new Customer(security.getUser());
+            onlineBakery.addSubscriber(currentCustomer);
+        }
+        else if(input == NO){
+            return;
+        }
+    } 
 
+    public void giveCoupon(){ 
+        onlineBakery.setDiscount(10);
+    }
+    
     public void login(){
         String userAttempt = view.getInput("Please enter your username or type signup to make a new account");
         if(userAttempt.equals("signup")) {
