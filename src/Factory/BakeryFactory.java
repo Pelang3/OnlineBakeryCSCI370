@@ -1,5 +1,4 @@
 package Factory;
-import Factory.*;
 import java.util.Map;
 
 public class BakeryFactory {
@@ -14,6 +13,7 @@ public class BakeryFactory {
 
     public BakeryFactory(){//default constructor
     }
+
     public IItem getItem(String type){
         if(Bakery_Creator_Map.containsKey(type)){
             return Bakery_Creator_Map.get(type);

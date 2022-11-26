@@ -7,11 +7,9 @@ import java.util.concurrent.TimeUnit;
 
 public class View {
     private Scanner console;
-    private Random generator;
 
     public View(){
         console = new Scanner(System.in);
-        generator = new Random();
     }
 
     //write a string message to the console
@@ -38,9 +36,14 @@ public class View {
 
     //get a double user input with a question string preceding it
     public double getInputNum(String question){
-        System.out.println(question);
-        String input = console.nextLine();
-        return Double.parseDouble(input);
+        try{
+            System.out.println(question);
+            String input = console.nextLine();
+            return Double.parseDouble(input);
+        } catch(NumberFormatException e){
+            System.out.println("Please enter a valid number response ex. 1");
+            return getInputNum(question);
+        }
     }
 
 }

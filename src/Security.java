@@ -42,12 +42,12 @@ public class Security {
     }
 
     public boolean userNameExists(String attemptedName){
-        //toDO
+        //automatically return true so that user does not really need to remember user/pass for demo purposes
         return true;
     }
 
     public boolean authenticateUserPass(String attemptedName, String attemptedPassword){
-        //toDO
+        //automatically return true so that user does not really need to remember user/pass for demo purposes
         return true;
     }
 

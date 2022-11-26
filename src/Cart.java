@@ -36,45 +36,39 @@ class Cart {
         updateTotalItems();
     }
 
-    public void showCart(Iterator iterator) {
+    public void showCart(Iterator<IItem> iterator) {
+        int num = 1;
         System.out.println("Items in your cart:");
         while (iterator.hasNext()) {
             IItem i = (IItem) iterator.next();
-            System.out.print(i.getProductName());
+            System.out.print(num+") "+i.getProductName());
             if (iterator.hasNext() != false) {
-                System.out.print(" costs: $" + i.getUnitPrice() + ", ");
+                System.out.print(" costs: $" + i.getUnitPrice() + "\n");
             } else {
-                System.out.print(" costs: $" + i.getUnitPrice() + ".");
+                System.out.print(" costs: $" + i.getUnitPrice() + "\n");
             }
-
+            num++;
         }
         System.out.print("\n");
         System.out.print("Item Count: " + totalItems);
         System.out.print("\n");
     }
 
-    public void removeFromCart(IItem i, Iterator iterator) {
-        System.out.println("Removing " + i.getProductName() + " from your cart...");
-        System.out.println("Items in your cart:");
-
+    public void removeFromCart(IItem i, Iterator<IItem> iterator) {
         while (iterator.hasNext()) {
             IItem j = (IItem) iterator.next();
-
             if (j.equals(i)) {
                 iterator.remove();
                 totalItems = totalItems - 1;
-            } else {
-                System.out.print(j.getProductName());
-                if (iterator.hasNext() != false) {
-                    System.out.print(" costs: $" + j.getUnitPrice() + ", ");
-                } else {
-                    System.out.print(" costs: $" + j.getUnitPrice() + ".");
-                }
-            }
+            } 
         }
     }
 
-    public double getTotalAmount(Iterator iterator) {
+    public IItem getItem(int i){
+        return items.get(i-1);
+    }
+
+    public double getTotalAmount(Iterator<IItem> iterator) {
 
         this.totalAmount = 0;
         while (iterator.hasNext()) {
@@ -109,7 +103,7 @@ class Cart {
         totalItems = totalItems + 1;
     }
 
-    public void printInvoice(Iterator iterator) {
+    public void printInvoice(Iterator<IItem> iterator) {
         // before tax and coupons
         double BeforeTAC = getTotalAmount(iterator);
         System.out.println("\n\t\t\t" + "Total : " + BeforeTAC);
@@ -142,10 +136,9 @@ class Cart {
 
     private class CartIterator implements BakeryIterator {
         @Override
-        public Iterator createBakeryIterator() {
+        public Iterator<IItem> createBakeryIterator() {
             return items.iterator();
         }
-
     }
 
 }

@@ -3,13 +3,13 @@ import java.util.ArrayList;
 public class CartManager {
     ArrayList<Cart> carts;
     private int coin;
-    private int idIterator;
+    private int idIncrememter;
     private static CartManager instance = new CartManager(); // eagerly loads the singleton
 
     private CartManager() {
         // private to prevent anyone else from instantiating
         this.carts = new ArrayList<>();
-        this.idIterator = 0;
+        this.idIncrememter = 0;
     }
 
     public static CartManager getInstance() {
@@ -21,7 +21,7 @@ public class CartManager {
     }
 
     public void addNewCart(String user) {
-        int cartId = idIterator++;
+        int cartId = idIncrememter++;
         Cart newCart = new Cart(cartId, user);
         carts.add(newCart);
     }

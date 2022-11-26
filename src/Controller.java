@@ -6,7 +6,6 @@ import Decorator.IcingDecorator;
 import Decorator.SprinkleDecorator;
 import Factory.*;
 import Observer.Customer;
-import Observer.Observer;
 import Observer.StoreObservable;
 
 /*
@@ -15,7 +14,6 @@ import Observer.StoreObservable;
  */
 public class Controller {
     private View view;
-    private ScriptReader sr; 
     private Security security;
     private CartManager cm;
 
@@ -31,7 +29,6 @@ public class Controller {
 
     public Controller(View view) {
         this.view = view;
-        this.sr = new ScriptReader();
         this.security = new Security();
         this.cm = CartManager.getInstance();
         start();
@@ -43,15 +40,15 @@ public class Controller {
             login();
         else{ 
             signUp();
-            newsletter(); 
         }
+        newsletter(); 
         this.currentUser = security.getUser();
         this.currentCart = cm.setUpCart(currentUser);
         randI = new Random(); 
 
         while(true){
             displayMenu();
-            myRandInt = randI.nextInt(15) + 1;
+            myRandInt = randI.nextInt(4) + 1;
             if(myRandInt == 1)
                 giveCoupon();
         }
@@ -67,7 +64,7 @@ public class Controller {
     }
     public void newsletter(){ 
         final int YES = 1, NO = 2;
-        int input = (int)view.getInputNum("Would you like to sign up for our newsletter? \n" +
+        int input = (int)view.getInputNum("\nWould you like to sign up for our newsletter? \n" +
                 " 1) Yes\n" + 
                 " 2) No\n");
         if(input == YES){
@@ -91,14 +88,14 @@ public class Controller {
         }
 
         if(security.userNameExists(userAttempt)){
-            view.writeToScreen("Hello " + userAttempt);
-            String passwordAttempt = view.getInput("Please enter your password " + userAttempt);
+            view.writeToScreen("\nHello " + userAttempt);
+            String passwordAttempt = view.getInput("Please enter your password: ");
             if(security.authenticateUserPass(userAttempt, passwordAttempt)){
-                view.writeToScreen("Welcome " + userAttempt);
+                view.writeToScreen("\nWelcome " + userAttempt);
                 security.setUser(userAttempt);
             }
             else{
-                //what to do if password in fails 
+                //handle if password fails here
             }
         } else{
             //write login to try again if username fails 
@@ -108,7 +105,7 @@ public class Controller {
     public void displayMenu(){
         final int ADD_ITEM = 1, REMOVE_ITEM = 2, VIEW_CART = 3, CHECKOUT = 4;
 
-        int input = (int)view.getInputNum( "Select an option: \n" +
+        int input = (int)view.getInputNum( "\nSelect an option: \n" +
                 "  1) Add Item\n" +
                 "  2) Remove Item\n" +
                 "  3) View Cart\n" +
@@ -124,7 +121,8 @@ public class Controller {
         }else if (input == CHECKOUT) {
             showCheckoutMenu();
         } else {
-            //if input is not between 1 and 4 ask again...
+            view.writeToScreen("Please enter a number between 1-4");
+            displayMenu();
         }
     }
 
@@ -142,7 +140,7 @@ public class Controller {
         if(input == 4){
             //Size
             view.writeToScreen("1) 6in Cake\n"+"2) 9in Cake\n");
-            input = (int)view.getInputNum("What size of the cake would you like? ");
+            input = (int)view.getInputNum("What size of the cake would you like?");
             
             //6in
             if(input == 1)
@@ -151,34 +149,41 @@ public class Controller {
             if(input == 2)
                 currPicked = BF.getItem(inputOptions[5]);
 
-            Cake cake = (Cake) currPicked;
-            do {
-                //Decorations
-                view.writeToScreen("1) Fruit\n2) Candy\n3) Sprinkles\n4) Fresh Cream\n5) Icing\n6.(Pick this when Done)\n");
-                input = (int)view.getInputNum("Pick any toppings you want.");
-
-                if(input == 1) {
-                    cake = new FruitDecorator(cake);
-                }
-                else if(input == 2) {
-                    cake = new CandyDecorator(cake);
-                }
-                else if(input == 3) {
-                    cake = new SprinkleDecorator(cake);
-                }
-                else if(input == 4) {
-                    cake = new FreshCreamDecorator(cake);
-                }
-                else if(input == 5) {
-                    cake = new IcingDecorator(cake);
-                }
-                else {
-                    currPicked = (IItem) cake;
-                    break;
-                }
-                view.writeToScreen("Current list of toppings: " + cake.getToppingList());
-            } while (input != 6);
             
+            input = (int)view.getInputNum("\nWould you like to decorate your cake? \n1) yes\n2) no ");
+            if(input==1){
+                Cake cake = (Cake) currPicked;
+                view.writeToScreen("\n");
+                do {
+                    //Decorations
+                    view.writeToScreen("1) Fruit\n2) Candy\n3) Sprinkles\n4) Fresh Cream\n5) Icing\n6.(Pick this when Done)\n");
+                    input = (int)view.getInputNum("Pick any toppings you want.");
+    
+                    if(input == 1) {
+                        cake = new FruitDecorator(cake);
+                    }
+                    else if(input == 2) {
+                        cake = new CandyDecorator(cake);
+                    }
+                    else if(input == 3) {
+                        cake = new SprinkleDecorator(cake);
+                    }
+                    else if(input == 4) {
+                        cake = new FreshCreamDecorator(cake);
+                    }
+                    else if(input == 5) {
+                        cake = new IcingDecorator(cake);
+                    }
+                    else {
+                        currPicked = (IItem) cake;
+                        break;
+                    }
+                    view.writeToScreen("Current list of toppings: " + cake.getToppingList());
+                } while (input != 6);
+                currPicked = cake;
+                view.writeToScreen("\n"+cake.getToppingList());
+
+            }
         }
         else{
             currPicked = BF.getItem(inputOptions[input-1]);
@@ -190,11 +195,25 @@ public class Controller {
 
 
     public void showRemoveMenu(){
-        view.writeToScreen("to do: showRemoveMenu");
+        showCartMenu();
+        int input = (int)view.getInputNum("\nSelect an item to remove from cart: \n");
+        
+        try{
+            IItem item = currentCart.getItem(input);
+            currentCart.removeFromCart(item, currentCart.getCartIterator().createBakeryIterator());
+            System.out.println("Removed " + item.getProductName() + " from your cart:");
+            showCartMenu();
+
+        } catch(IndexOutOfBoundsException e){
+            view.writeToScreen("\nItem does not exist, please try again\n");
+        }
+
     }
 
     public void showCartMenu(){
-        view.writeToScreen("to do: showCartMenu");
+        view.writeToScreen("\n-------------Cart--------------\n");
+        currentCart.showCart(currentCart.getCartIterator().createBakeryIterator());
+        view.writeToScreen("\n-------------Cart--------------\n");
     }
 
     public void showCheckoutMenu(){

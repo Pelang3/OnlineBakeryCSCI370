@@ -1,6 +1,6 @@
 package Factory;
 public class Cookie implements IItem{
-    private final int Price = 2;
+    private final int Price = 1;
 
     public Cookie(){
 
@@ -16,10 +16,11 @@ public class Cookie implements IItem{
         // TODO Auto-generated method stub
         return "Cookie";
     }
+
     @Override
     public double getUnitPrice() {
         // TODO Auto-generated method stub
-        return 0;
+        return Price;
     }
 
 }
