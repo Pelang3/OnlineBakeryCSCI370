@@ -41,6 +41,27 @@ public class StoreObservable implements Subject {
 			obs.update(discount);
 		}
 	}
+	
+	public int size()
+	{
+		int count = 0;
+		for(Observer obs : observers)
+		{
+			count++;
+		}
+		
+		return count;
+	}
+	
+	public boolean contains(Observer o)
+	{
+		for(int i = 0; i < observers.size(); i++){
+			if(observers.get(i).equals(o)) return true;
+		}
+		
+		
+		return false;
+	}
 
 	public void setDiscount(int discount) 
 	{
