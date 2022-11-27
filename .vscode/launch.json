@@ -6,6 +6,20 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch Cart",
+            "request": "launch",
+            "mainClass": "Cart",
+            "projectName": "OnlineBakeryCSCI370_5132926e"
+        },
+        {
+            "type": "java",
+            "name": "Launch BakeryIteratorTest",
+            "request": "launch",
+            "mainClass": "BakeryIteratorTest",
+            "projectName": "OnlineBakeryCSCI370_5132926e"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"

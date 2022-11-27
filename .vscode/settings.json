@@ -1,8 +1,11 @@
 {
-    "java.project.sourcePaths": ["src"],
+    "java.project.sourcePaths": [
+        "src"
+    ],
     "java.project.outputPath": "bin",
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
-        "e:\\Downloadse\\323\\guava-31.1-jre.jar"
+        "e:\\Downloadse\\323\\guava-31.1-jre.jar",
+        "C:\\Users\\niaaw\\junit_junit_4.13.2_junit-4.13.2.jar"
     ]
 }
