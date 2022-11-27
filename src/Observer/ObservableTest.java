@@ -1,4 +1,4 @@
-//package Observer;
+package Observer;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ObservableTest {
@@ -9,20 +9,6 @@ public class ObservableTest {
         onlineBakery.setDiscount(10);
         onlineBakery.setDiscount(20);
         assertTrue(onlineBakery.getDiscount() != 10);
-    }
-
-    @org.junit.jupiter.api.Test
-    void observableSubscriberCount()
-    {
-        Customer c1 = new Customer("Pedro");
-        Customer c2 = new Customer("Ben");
-        Customer c3 = new Customer("Will");
-        
-        onlineBakery.addSubscriber(c1);
-        onlineBakery.addSubscriber(c2);
-        onlineBakery.addSubscriber(c3);
-
-        assertTrue(onlineBakery.size() == 3);
     }
 
     @org.junit.jupiter.api.Test
@@ -38,7 +24,7 @@ public class ObservableTest {
 
         onlineBakery.removeSubscriber(c1);
 
-        assertFalse(!onlineBakery.contains(c3), "Effective");
+        assertFalse(onlineBakery.contains(c1));
     }
 }
 /*
