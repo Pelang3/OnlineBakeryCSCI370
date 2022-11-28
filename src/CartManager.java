@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class CartManager {
     ArrayList<Cart> carts;
-    private int coin;
     private int idIncrememter;
     private static CartManager instance = new CartManager(); // eagerly loads the singleton
 
@@ -14,10 +13,6 @@ public class CartManager {
 
     public static CartManager getInstance() {
         return instance;
-    }
-
-    public int getCoin() {
-        return coin;
     }
 
     public void addNewCart(String user) {
