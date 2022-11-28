@@ -6,4 +6,8 @@ public interface Subject {
 	void removeSubscriber(Observer o);
 	
 	void notifySubscriber(Integer discount);
+	
+	boolean contains(Observer o);
+
+	int size();
 }
