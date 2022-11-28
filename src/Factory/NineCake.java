@@ -1,10 +1,9 @@
 package Factory;
 
-public class NineCake extends Cake{
+public class NineCake extends Cake {
 
     public NineCake() {
-        super(9,25);
-        //TODO Auto-generated constructor stub
+        super(9, 25);
     }
-    
+
 }

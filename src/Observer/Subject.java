@@ -5,5 +5,5 @@ public interface Subject {
 	
 	void removeSubscriber(Observer o);
 	
-	void notifySubscriber(int discount);
+	void notifySubscriber(Integer discount);
 }

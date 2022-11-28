@@ -7,6 +7,9 @@ import Decorator.SprinkleDecorator;
 import Factory.*;
 import Observer.Customer;
 import Observer.StoreObservable;
+import Strategy.DeliveryManager;
+import Strategy.DoorDashStrategy;
+import Strategy.UPSMailStrategy;
 
 /*
  * The controller class will manage the flow and of the application 
@@ -16,6 +19,7 @@ public class Controller {
     private View view;
     private Security security;
     private CartManager cm;
+    private DeliveryManager dm;
 
     /*
      * For convienience, controller should not have these as instance variables
@@ -31,6 +35,7 @@ public class Controller {
         this.view = view;
         this.security = new Security();
         this.cm = CartManager.getInstance();
+        this.dm = new DeliveryManager();
         start();
     }
 
@@ -217,7 +222,33 @@ public class Controller {
     }
 
     public void showCheckoutMenu(){
-        view.writeToScreen("to do: showCheckoutMenu");
+        int input = (int)view.getInputNum("\nWould you like to checkout \n1) yes\n2) no");
+        if(input != 1) return; 
+
+        double payableAmount = currentCart.getTotalAmount(currentCart.getCartIterator().createBakeryIterator());
+        view.writeToScreen("\nTotal payable amount is: $" + payableAmount);
+        Integer coupon = onlineBakery.getDiscount();
+        if(coupon!=null){
+            double discount = (double)((100-(int)coupon)/100.0);
+            view.writeToScreen("\nCongratulations, with the coupon your new total is: $" + (double)(payableAmount*discount));
+        }
+        
+        String address = view.getInput("\nPlease enter the address you would like to recieve the item:");
+        input = (int)view.getInputNum("\nWould you like to get shipped by \n1) UPS Mail\n2) DoorDash");
+        if(input == 1)
+            dm.setDeliveryMethod(new UPSMailStrategy());
+        else if(input == 2){
+            dm.setDeliveryMethod(new DoorDashStrategy());
+        } else{
+            view.writeToScreen("Please enter a valid shipping method and try again");
+            showCheckoutMenu();
+        }
+
+        view.writeToScreen("Thank you for shopping with us, your package will arrive shortly", 2);
+        String cart = currentCart.getCartString(currentCart.getCartIterator().createBakeryIterator());
+        dm.deliver(cart, address);
+        
+        System.exit(0);
     }
 
 

@@ -8,18 +8,15 @@ public class Cookie implements IItem{
     
     @Override
     public int getPrice() {
-        // TODO Auto-generated method stub
         return Price;
     }
     @Override
     public String getProductName() {
-        // TODO Auto-generated method stub
         return "Cookie";
     }
 
     @Override
     public double getUnitPrice() {
-        // TODO Auto-generated method stub
         return Price;
     }
 

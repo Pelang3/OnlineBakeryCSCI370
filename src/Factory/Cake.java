@@ -32,13 +32,11 @@ public class Cake implements IItem {
 
 	@Override
 	public String getProductName() {
-		// TODO Auto-generated method stub
 		return getSize()+"in. Cake";
 	}
 
 	@Override
 	public double getUnitPrice() {
-		// TODO Auto-generated method stub
 		return Price;
 	}
 

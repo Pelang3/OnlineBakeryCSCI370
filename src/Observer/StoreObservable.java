@@ -8,9 +8,9 @@ public class StoreObservable implements Subject {
 	private List<Observer> observers = new ArrayList<>();
 	//StoreObservable store = new StoreObservable();
 	
-	int discount;
+	Integer discount;
 	
-	public int getDiscount() 
+	public Integer getDiscount() 
 	{
 		return discount;
 	}
@@ -33,7 +33,7 @@ public class StoreObservable implements Subject {
 	}
 
 	@Override
-	public void notifySubscriber(int x) 
+	public void notifySubscriber(Integer x) 
 	{
 		// TODO Auto-generated method stub
 		for(Observer obs : observers)
@@ -42,7 +42,7 @@ public class StoreObservable implements Subject {
 		}
 	}
 
-	public void setDiscount(int discount) 
+	public void setDiscount(Integer discount) 
 	{
 		this.discount = discount;
 		notifySubscriber(discount);

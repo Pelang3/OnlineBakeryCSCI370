@@ -9,7 +9,7 @@ public class Customer implements Observer {
 		this.name = name;
 	}
 	
-	public void update(int discount) 
+	public void update(Integer discount) 
 	{
 		System.out.println("Congrats " + name +"! " + discount + "% discount available for you!");
 	}

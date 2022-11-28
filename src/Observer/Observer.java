@@ -1,6 +1,6 @@
 package Observer;
 public interface Observer {
 
-	void update(int discount);
+	void update(Integer discount);
 	
 }
