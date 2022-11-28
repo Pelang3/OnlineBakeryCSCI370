@@ -247,7 +247,8 @@ public class Controller {
 
         view.writeToScreen("Thank you for shopping with us, your package will arrive shortly", 2);
         String cart = currentCart.getCartString(currentCart.getCartIterator().createBakeryIterator());
-        dm.deliver(cart, address);
+        view.writeToScreen(dm.deliver(cart, address));
+
         
         System.exit(0);
     }

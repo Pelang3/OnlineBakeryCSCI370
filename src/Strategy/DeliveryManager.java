@@ -11,8 +11,8 @@ public class DeliveryManager {
         this.ds = newStrategy;
     }
 
-    public void deliver(String cart, String address){
-        ds.deliver(cart, address);
+    public String deliver(String cart, String address){
+        return ds.deliver(cart, address);
     }
 
 }

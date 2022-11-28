@@ -15,7 +15,7 @@ import Decorator.FreshCreamDecorator;
 
 
 
-class cakeDecoTest {
+class CakeDecoratorTest {
 
 	//to see if candy and fruit decorators work, if that works, they all work.
 	@Test
