@@ -7,6 +7,8 @@ import Decorator.SprinkleDecorator;
 import Factory.*;
 import Observer.Customer;
 import Observer.StoreObservable;
+import Singleton.Cart;
+import Singleton.CartManager;
 import Strategy.DeliveryManager;
 import Strategy.DoorDashStrategy;
 import Strategy.UPSMailStrategy;

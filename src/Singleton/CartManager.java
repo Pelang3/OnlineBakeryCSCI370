@@ -1,3 +1,4 @@
+package Singleton;
 import java.util.ArrayList;
 
 public class CartManager {

@@ -1,10 +1,12 @@
+package Singleton;
 
 import Factory.IItem;
+import Iterator.BakeryIterator;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 
-class Cart {
+public class Cart {
 
     private int cartID;
     private int totalItems;
@@ -62,6 +64,7 @@ class Cart {
             if (j.equals(i)) {
                 iterator.remove();
                 totalItems = totalItems - 1;
+                return;
             } 
         }
     }
