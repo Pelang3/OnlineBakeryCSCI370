@@ -39,17 +39,16 @@ public class Cart {
         updateTotalItems();
     }
 
-
     public void showCart(Iterator<IItem> iterator) {
         int num = 1;
         System.out.println("Items in your cart:");
         while (iterator.hasNext()) {
             IItem i = (IItem) iterator.next();
-            System.out.print(num+") "+i.getProductName());
+            System.out.print(num + ") " + i.getProductName());
             if (iterator.hasNext() != false) {
-                System.out.print(" $" + String.format("%.2f",i.getUnitPrice())+ "\n");
+                System.out.print(" $" + String.format("%.2f", i.getUnitPrice()) + "\n");
             } else {
-                System.out.print(" $" + String.format("%.2f",i.getUnitPrice())+ "\n");
+                System.out.print(" $" + String.format("%.2f", i.getUnitPrice()) + "\n");
             }
             num++;
         }
@@ -65,12 +64,12 @@ public class Cart {
                 iterator.remove();
                 totalItems = totalItems - 1;
                 return;
-            } 
+            }
         }
     }
 
-    public IItem getItem(int i){
-        return items.get(i-1);
+    public IItem getItem(int i) {
+        return items.get(i - 1);
     }
 
     public double getTotalAmount(Iterator<IItem> iterator) {
@@ -95,14 +94,14 @@ public class Cart {
      * }
      * }
      */
-    
+
     // public double getPayableAmount() {
-    //     this.payableAmount = 0;
-    //     double taxed = this.totalAmount * 0.08875;
-    //     this.tax = taxed;
-    //     System.out.println("\t\t\t" + "Tax : " + tax);
-    //     this.payableAmount = (this.totalAmount + taxed);
-    //     return this.payableAmount;
+    // this.payableAmount = 0;
+    // double taxed = this.totalAmount * 0.08875;
+    // this.tax = taxed;
+    // System.out.println("\t\t\t" + "Tax : " + tax);
+    // this.payableAmount = (this.totalAmount + taxed);
+    // return this.payableAmount;
     // }
 
     private void updateTotalItems() {
@@ -110,23 +109,23 @@ public class Cart {
     }
 
     // public void printInvoice(Iterator<IItem> iterator) {
-    //     // before tax and coupons
-    //     double BeforeTAC = getTotalAmount(iterator);
-    //     System.out.println("\n\t\t\t" + "Total : " + BeforeTAC);
-    //     // this.applyCoupon(this.coupon);
-    //     // System.out.println("\t\t\t" + "Discount : " + this.discount);
-    //     System.out.println("\t\t\t" + "Total : " + this.getPayableAmount());
-    //     System.out.println("\t\t\t" + "Item Count: " + this.totalItems);
-    //     System.out.println();
+    // // before tax and coupons
+    // double BeforeTAC = getTotalAmount(iterator);
+    // System.out.println("\n\t\t\t" + "Total : " + BeforeTAC);
+    // // this.applyCoupon(this.coupon);
+    // // System.out.println("\t\t\t" + "Discount : " + this.discount);
+    // System.out.println("\t\t\t" + "Total : " + this.getPayableAmount());
+    // System.out.println("\t\t\t" + "Item Count: " + this.totalItems);
+    // System.out.println();
     // }
 
-    public String getCartString(Iterator<IItem> iterator){
-            String output = "";
-            while (iterator.hasNext()) {
-                IItem i = (IItem) iterator.next();
-                output+="\n"+i.getProductName() + " $" + String.format("%.2f",i.getUnitPrice());
-            }
-            return output;
+    public String getCartString(Iterator<IItem> iterator) {
+        String output = "";
+        while (iterator.hasNext()) {
+            IItem i = (IItem) iterator.next();
+            output += "\n" + i.getProductName() + " $" + String.format("%.2f", i.getUnitPrice());
+        }
+        return output;
     }
 
     public int getCartID() {

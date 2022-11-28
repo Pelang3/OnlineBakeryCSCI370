@@ -2,3 +2,4 @@ src/*.class
 *.class
 *.iml
 out/
+bin/

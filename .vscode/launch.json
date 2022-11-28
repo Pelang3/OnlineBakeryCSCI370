@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Launch BakeryIteratorTest",
+            "request": "launch",
+            "mainClass": "Testing.BakeryIteratorTest",
+            "projectName": "OnlineBakeryCSCI370_5132926e"
+        },
+        {
+            "type": "java",
             "name": "Launch Current File",
             "request": "launch",
             "mainClass": "${file}"
