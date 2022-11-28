@@ -4,8 +4,5 @@ Prototype online website (gui through terminal) to implement software engineerin
 
 Patterns implemented by different group members
 
-https://drive.google.com/drive/folders/1eEghdggeKETwbPHbwEyaxNbosMAJdVqj
-
-
 ## Requirements
 Java SE 9 and above
