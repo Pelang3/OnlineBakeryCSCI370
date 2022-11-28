@@ -65,8 +65,8 @@ public class Controller {
         view.writeToScreen("Account not detected, please sign-up", 2);
         String name = view.getInput("Please enter your name:");
         String password = view.getInput("Please enter your password:");
-        double funds = view.getInputNum("Please enter the money you are depositing:");
-        security.saveUser(name, password, funds);
+        // double funds = view.getInputNum("Please enter the money you are depositing:");
+        security.saveUser(name, password, 0);
         security.setUser(name);
     }
     public void newsletter(){ 
