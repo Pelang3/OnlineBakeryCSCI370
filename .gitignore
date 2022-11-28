@@ -2,3 +2,6 @@ src/*.class
 *.class
 *.iml
 out/
+bin/
+.vscode/
+.idea/
