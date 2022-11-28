@@ -22,11 +22,13 @@ class CakeDecoratorTest {
 	public void testAddDecotoToppingList() 
 	{
 		NineCake test = new NineCake();
+		
 		CandyDecorator testDeco = new CandyDecorator(test);
 		FruitDecorator testDeco1 =  new FruitDecorator(test);
 		
 		String decorator = testDeco.getToppingList();
 		String decorator2 = testDeco1.getToppingList();
+		
 		assertTrue(decorator.contains("Candy"));
 		assertTrue(decorator2.contains("Fruit")); 
 		
@@ -36,12 +38,11 @@ class CakeDecoratorTest {
 		
 		
 	}
-	//tried to tie in CakeDecorator base class with this. 
+	
 	@Test
 	public void testCakeDecorator() 
 	{
 		SixCake testCake = new SixCake();
-		CakeDecorator testBaseCake = new CakeDecorator(testCake);
 		
 		SprinkleDecorator testSpr = new SprinkleDecorator(testCake);
 		FreshCreamDecorator testFC =  new FreshCreamDecorator(testCake);
@@ -52,8 +53,8 @@ class CakeDecoratorTest {
 		assertTrue(cake.contains("Sprinkles"));
 		assertTrue(cakey.contains("Fresh Cream")); 
 		
-		System.out.println("Test 2: " + testBaseCake.getSize()+ ", "
-		+ testBaseCake.getToppingList() + "," + testBaseCake.getPrice() +" :LIT IT WORKED");
+		System.out.println("Test 2: " + testCake.getSize()+ ", "
+		+ testCake.getToppingList() + "," + testCake.getPrice() +" :LIT IT WORKED");
 		
 		//it works!!
 	}
