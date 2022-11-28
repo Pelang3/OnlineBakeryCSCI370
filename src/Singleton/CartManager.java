@@ -50,5 +50,8 @@ public class CartManager {
             addNewCart(user);
         return getUserCart(user);
     }
+    public int getIdIncrememter() {
+        return idIncrememter;
+    }
 
 }

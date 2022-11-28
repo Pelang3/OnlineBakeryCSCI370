@@ -21,7 +21,7 @@ public class Cart {
     String coupon;
     private double discount;
 
-    Cart(int cartID, String user) {
+    public Cart(int cartID, String user) {
         this.items = new ArrayList<IItem>();
         this.coupon = "";
         this.totalAmount = 0;
