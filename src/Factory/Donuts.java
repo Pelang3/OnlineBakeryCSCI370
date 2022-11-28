@@ -13,7 +13,7 @@ public class Donuts implements IItem {
 
     @Override
     public String getProductName() {
-        return "Donut";
+        return "Donuts";
     }
 
     @Override

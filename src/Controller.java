@@ -133,11 +133,8 @@ public class Controller {
         }
     }
 
-<<<<<<< Updated upstream
+
      public void showItemMenu(){
-=======
-    public void showItemMenu(){
->>>>>>> Stashed changes
         int input = (int)view.getInputNum("\nSelect an item option: \n"+
         "1) Cookies\n"+"2) Croissants\n"+"3) Donuts\n"+"4) Cake\n");
         final BakeryFactory BF = new BakeryFactory();
