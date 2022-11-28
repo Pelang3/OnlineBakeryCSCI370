@@ -225,13 +225,13 @@ public class Controller {
         if(input != 1) return; 
 
         double payableAmount = currentCart.getTotalAmount(currentCart.getCartIterator().createBakeryIterator());
-        view.writeToScreen("\nTotal payable amount is: $" + payableAmount);
+        view.writeToScreen("\nTotal payable amount is: $" + String.format("%.2f",payableAmount));
         Integer coupon = onlineBakery.getDiscount();
         if(coupon!=null){
             double discount = (double)((100-(int)coupon)/100.0);
-            view.writeToScreen("\nCongratulations, with the coupon your new total is: $" + (double)(payableAmount*discount));
+            view.writeToScreen("\nCongratulations, with the coupon your new total is: $" + String.format("%.2f",(double)(payableAmount*discount)));
         }
-        
+
         String address = view.getInput("\nPlease enter the address you would like to recieve the item:");
         input = (int)view.getInputNum("\nWould you like to get shipped by \n1) UPS Mail\n2) DoorDash");
         if(input == 1)

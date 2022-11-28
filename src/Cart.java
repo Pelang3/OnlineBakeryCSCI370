@@ -37,6 +37,7 @@ class Cart {
         updateTotalItems();
     }
 
+
     public void showCart(Iterator<IItem> iterator) {
         int num = 1;
         System.out.println("Items in your cart:");
@@ -44,9 +45,9 @@ class Cart {
             IItem i = (IItem) iterator.next();
             System.out.print(num+") "+i.getProductName());
             if (iterator.hasNext() != false) {
-                System.out.print(" costs: $" + i.getUnitPrice() + "\n");
+                System.out.print(" $" + String.format("%.2f",i.getUnitPrice())+ "\n");
             } else {
-                System.out.print(" costs: $" + i.getUnitPrice() + "\n");
+                System.out.print(" $" + String.format("%.2f",i.getUnitPrice())+ "\n");
             }
             num++;
         }
@@ -120,7 +121,7 @@ class Cart {
             String output = "";
             while (iterator.hasNext()) {
                 IItem i = (IItem) iterator.next();
-                output+="\n"+i.getProductName() + " costs: $" + i.getUnitPrice();
+                output+="\n"+i.getProductName() + " $" + String.format("%.2f",i.getUnitPrice());
             }
             return output;
     }
