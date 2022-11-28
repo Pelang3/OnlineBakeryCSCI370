@@ -1,8 +1,0 @@
-src/*.class
-src/Database/loginInfo.txt
-*.class
-*.iml
-out/
-bin/
-.vscode/
-.idea/
